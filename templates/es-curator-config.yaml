@@ -37,7 +37,33 @@ data:
           stats_result:
           epoch:
           exclude: False
+
       2:
+        action: snapshot
+        description: Snapshots selected indices into repository s3-snapshots
+        options:
+          repository: s3-snapshots
+          name:
+          disable_action: {{ .Values.curator.snapshot.disabled }}
+          ignore_empty_list: {{ .Values.curator.options.ignoreEmptyList }}
+          continue_if_exception: True
+          include_global_state: {{ .Values.curator.snapshot.includeGlobalState }}
+          wait_for_completion: {{ .Values.curator.snapshot.waitForCompletion }}
+          max_wait: {{ .Values.curator.snapshot.maxWait }}
+          wait_interval: {{ .Values.curator.snapshot.waitInterval }}
+        filters:
+        - filtertype: age
+          source: name
+          direction: older
+          timestring: '{{ .Values.curator.snapshot.age.timestring }}'
+          unit: {{ .Values.curator.snapshot.age.unit }}
+          unit_count: {{ .Values.curator.snapshot.age.unit_count }}
+          field:
+          stats_result:
+          epoch:
+          exclude: False
+
+      3:
         action: close
         description: Close old indices
         options:

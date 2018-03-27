@@ -220,6 +220,18 @@ curator:
       unit: "days"
       unit_count: 3
 
+  # Enables snapshot action based on age based filter
+  snapshot:
+    disabled: "True"
+    includeGlobalState: "True"
+    waitForCompletion: "True"
+    maxWait: 3600
+    waitInterval: 10
+    age:
+      timestring: "%Y.%m.%d"
+      unit: "days"
+      unit_count: 3
+
 service:
   httpPort: 9200
   transportPort: 9300
