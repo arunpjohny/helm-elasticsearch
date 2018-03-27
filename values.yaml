@@ -146,6 +146,7 @@ curator:
     disabled: "True"
     includeGlobalState: "True"
     waitForCompletion: "True"
+    ignoreUnavailable: "True"
     maxWait: 3600
     waitInterval: 10
     age:
