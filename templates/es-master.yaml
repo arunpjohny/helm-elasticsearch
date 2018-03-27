@@ -100,8 +100,7 @@ spec:
           name: transport
           protocol: TCP
         livenessProbe:
-          tcpSocket:
-            port: 9300
+{{ toYaml .Values.data.livenessProbe | indent 10 }}
         volumeMounts:
         - name: storage
           mountPath: /data
