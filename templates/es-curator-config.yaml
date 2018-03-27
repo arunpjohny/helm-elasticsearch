@@ -41,7 +41,7 @@ data:
         action: snapshot
         description: Snapshots selected indices into repository s3-snapshots
         options:
-          repository: s3-snapshots
+          repository: {{ .Values.curator.snapshot.repository }}
           name:
           disable_action: {{ .Values.curator.snapshot.disabled }}
           ignore_empty_list: {{ .Values.curator.options.ignoreEmptyList }}
