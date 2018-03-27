@@ -57,6 +57,19 @@ client:
     NODE_INGEST: "true"
     HTTP_ENABLE: "true"
 
+  # Refer https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes
+  livenessProbe:
+    tcpSocket:
+      port: 9300
+
+  # Refer https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes
+  readinessProbe:
+    httpGet:
+      path: /_cluster/health
+      port: 9200
+    initialDelaySeconds: 20
+    timeoutSeconds: 5
+
 # Data nodes hold the shards that contain the documents you have indexed. Data
 # nodes handle data related operations like CRUD, search, and aggregations. 
 # These operations are I/O-, memory-, and CPU-intensive. It is important to 
@@ -91,6 +104,13 @@ data:
     # This is a default value, and will not be sufficient in a production
     # system. You'll probably want to increase it.
     size: 12Gi
+
+  # Refer https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes
+  livenessProbe:
+    tcpSocket:
+      port: 9300
+    initialDelaySeconds: 20
+    periodSeconds: 10
 
 # The master node is responsible for lightweight cluster-wide actions such as
 # creating or deleting an index, tracking which nodes are part of the 
@@ -128,6 +148,11 @@ master:
     # This is a default value, and will not be sufficient in a production
     # system. You'll probably want to increase it.
     size: 2Gi  
+
+  # Refer https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes
+  livenessProbe:
+    tcpSocket:
+      port: 9300
 
 curator:
   enabled: true
