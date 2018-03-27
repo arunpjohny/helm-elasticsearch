@@ -223,6 +223,7 @@ curator:
   # Enables snapshot action based on age based filter
   snapshot:
     disabled: "True"
+    repository: "s3-snapshots"
     includeGlobalState: "True"
     waitForCompletion: "True"
     ignoreUnavailable: "True"
