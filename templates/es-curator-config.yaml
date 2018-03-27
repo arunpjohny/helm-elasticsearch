@@ -46,6 +46,7 @@ data:
           name:
           disable_action: {{ .Values.curator.snapshot.disabled }}
           ignore_empty_list: {{ .Values.curator.options.ignoreEmptyList }}
+          ignore_unavailable: {{ .Values.curator.options.ignoreUnavailable }}
           continue_if_exception: True
           include_global_state: {{ .Values.curator.snapshot.includeGlobalState }}
           wait_for_completion: {{ .Values.curator.snapshot.waitForCompletion }}
