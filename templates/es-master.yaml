@@ -16,6 +16,10 @@ spec:
   replicas: {{ .Values.master.replicas }}
   template:
     metadata:
+      {{- if .Values.master.podAnnotations }}
+      annotations:
+{{ toYaml .Values.master.podAnnotations | indent 8 }}
+      {{- end }}
       labels:
         component: {{ template "fullname" . }}
         role: master
@@ -100,7 +104,7 @@ spec:
           name: transport
           protocol: TCP
         livenessProbe:
-{{ toYaml .Values.data.livenessProbe | indent 10 }}
+{{ toYaml .Values.master.livenessProbe | indent 10 }}
         volumeMounts:
         - name: storage
           mountPath: /data

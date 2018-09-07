@@ -16,6 +16,10 @@ spec:
   replicas: {{ .Values.data.replicas }}
   template:
     metadata:
+      {{- if .Values.data.podAnnotations }}
+      annotations:
+{{ toYaml .Values.data.podAnnotations | indent 8 }}
+      {{- end }}
       labels:
         component: {{ template "fullname" . }}
         role: data

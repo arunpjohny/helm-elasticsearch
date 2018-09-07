@@ -84,6 +84,7 @@ client:
     initialDelaySeconds: 20
     timeoutSeconds: 5
 
+  # podAnnotations: {}
 
 # Data nodes hold the shards that contain the documents you have indexed. Data
 # nodes handle data related operations like CRUD, search, and aggregations. 
@@ -141,6 +142,8 @@ data:
     initialDelaySeconds: 20
     periodSeconds: 10
 
+  # podAnnotations: {}
+
 # The master node is responsible for lightweight cluster-wide actions such as
 # creating or deleting an index, tracking which nodes are part of the 
 # cluster, and deciding which shards to allocate to which nodes. It is 
@@ -196,6 +199,8 @@ master:
   livenessProbe:
     tcpSocket:
       port: 9300
+
+  # podAnnotations: {}
 
 curator:
   enabled: true
